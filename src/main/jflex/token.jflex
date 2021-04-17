@@ -33,11 +33,12 @@
 
  Digito = [0-9]
  Letra = [A-Za-z]
- Reservada = "int"
+ Reservada = "auto"|"break"|"case"|"char"|"const"|"continue"|"default"|"do"|"double"|"else"|"enum"|"extern"|"float"|"for"|"goto"|"if"|"int"|"long"|"register"|"return"|"short"|"signed"|"sizeof"|"static"|"struct"|"switch"|"typedef"|"union"|"unsigned"|"void"|"volatile"|"while"
  Variable = [A-Za-z]+ [0-9]*
- Simbolo = "*"|"+"|"-"|"/"|"#"
+ Operador = ","|";"|"++"|"--"|"=="|">="|">"|"?"|"<="|"<"|"!="|"||"|"&&"|"!"|"="|"+"|"-"|"*"|"/"|"%"|"("|")"|"["|"]"|"{"|"}"|":"|"."|"+="|"-="|"*="|"/="|"&"|"^"|"|"|">>"|"<<"|"~"|"%="|"&="|"^="|"|="|"<<="|">>="|"->"
  Espacio = " "
  SaltoDeLinea = \n|\r|\r\n
+ Comentario= "/*"|"*/"|"//"
 
 /* Finaliza expresiones regulares */
 
@@ -49,19 +50,25 @@
 // Cada regla está formada por una {expresión} espacio {código}
 
 {Reservada} {
-  TokenPersonalizado t = new TokenPersonalizado(yytext(), "Reservada");
+  TokenPersonalizado t = new TokenPersonalizado(yytext(), "RESERVADA");
+  this._existenTokens = true;
+  return t;
+}
+
+{Comentario} {
+  TokenPersonalizado t = new TokenPersonalizado(yytext(), "COMENTARIO");
   this._existenTokens = true;
   return t;
 }
 
 {Variable} {
-  TokenPersonalizado t = new TokenPersonalizado(yytext(), "Variable");
+  TokenPersonalizado t = new TokenPersonalizado(yytext(), "VARIABLE");
   this._existenTokens = true;
   return t;
 }
 
-{Simbolo} {
- TokenPersonalizado t = new TokenPersonalizado(yytext(), "SIMBOLO");
+{Operador} {
+ TokenPersonalizado t = new TokenPersonalizado(yytext(), "OPERADOR");
  this._existenTokens = true;
  return t;
 }

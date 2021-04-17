@@ -1,3 +1,0 @@
-int variable1
-é
-ñ
