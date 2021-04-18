@@ -1,7 +1,10 @@
+import java.util.Hashtable;
+
 public class Token {
     String token;
     String lexeme;
     int line;
+    Hashtable<Integer, Integer> occurrencies;
 
     Token(String token, String lexeme, int line) {
         this.token = token;

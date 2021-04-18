@@ -28,23 +28,23 @@ public class TokenTable {
     }
 
     public void printTable() {
-        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                                  TOKEN TABLE                                  ║");
-        System.out.println("╠═══════════════╦═════════════════════╦═════════════════════════════════════════╣");
-        System.out.println("║ Lexeme        ║ Token               ║ Line                                    ║");
+        System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                                          TOKEN TABLE                                          ║");
+        System.out.println("╠═══════════════╦═════════════════════════════════════╦═════════════════════════════════════════╣");
+        System.out.println("║ Lexeme        ║ Token                               ║ Line                                    ║");
 
         for (String key : this.tokenList.keySet()) {
             String lexeme = this.tokenList.get(key).getLexeme();
             lexeme += getNSpaces(13 - lexeme.length());
             String token = this.tokenList.get(key).getToken();
-            token += getNSpaces(19 - token.length());
+            token += getNSpaces(35 - token.length());
             String line = "1";
             line += getNSpaces(39 - line.length());
             String str = "║ " + lexeme + " ║ " + token + " ║ " + line + " ║";
-            System.out.println("╠═══════════════╬═════════════════════╬═════════════════════════════════════════╣");
+            System.out.println("╠═══════════════╬═════════════════════════════════════╬═════════════════════════════════════════╣");
             System.out.println(str);
         }
-        System.out.println("╚═══════════════╩═════════════════════╩═════════════════════════════════════════╝");
+        System.out.println("╚═══════════════╩═════════════════════════════════════╩═════════════════════════════════════════╝");
     }
 
     private String getNSpaces(int n) {
