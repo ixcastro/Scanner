@@ -19,7 +19,13 @@ public class TokenTable {
             Token token = scanner.yylex();
 
             while (token != null) {
-                this.tokenList.put(token.getLexeme(), token);
+
+                if (this.tokenList.get(token.getLexeme()) == null){
+                    this.tokenList.put(token.getLexeme(), token);
+                } else {
+                    int line = (int) token.occurrencies.keySet().toArray()[0];
+                    tokenList.get(token.getLexeme()).insertOccurrenceLine(line);
+                }
                 token = scanner.yylex();
             }
         } catch (Exception e) {
@@ -29,16 +35,16 @@ public class TokenTable {
 
     public void printTable() {
         System.out.println("╔═══════════════════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                                          TOKEN TABLE                                          ║");
+        System.out.println("║                                       TABLE DE TOKEN                                          ║");
         System.out.println("╠═══════════════╦═════════════════════════════════════╦═════════════════════════════════════════╣");
-        System.out.println("║ Lexeme        ║ Token                               ║ Line                                    ║");
+        System.out.println("║ Lexema        ║ Token                               ║ Linea                                   ║");
 
         for (String key : this.tokenList.keySet()) {
             String lexeme = this.tokenList.get(key).getLexeme();
             lexeme += getNSpaces(13 - lexeme.length());
             String token = this.tokenList.get(key).getToken();
             token += getNSpaces(35 - token.length());
-            String line = "1";
+            String line = this.tokenList.get(key).getStringOccurrences();
             line += getNSpaces(39 - line.length());
             String str = "║ " + lexeme + " ║ " + token + " ║ " + line + " ║";
             System.out.println("╠═══════════════╬═════════════════════════════════════╬═════════════════════════════════════════╣");
