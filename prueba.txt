@@ -5,9 +5,12 @@ auto
 ""
 //hi
 ' '
+ñ
 while while while
 while
 1.1
 -1
 033
 0X20F
+!
+É
