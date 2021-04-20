@@ -280,7 +280,7 @@
 }
 
 \? {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR CONDICIONAL TERNARIO", yytext(), yyline);
   return t;
 }
 
@@ -300,12 +300,12 @@
 }
 
 \|\| {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR OR LÓGICO", yytext(), yyline);
   return t;
 }
 
 \&\& {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR AND LÓGICO", yytext(), yyline);
   return t;
 }
 
@@ -335,12 +335,12 @@
 }
 
 \/ {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR DIVISIÓN", yytext(), yyline);
   return t;
 }
 
 \% {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR MÓDULO", yytext(), yyline);
   return t;
 }
 
@@ -410,7 +410,7 @@
 }
 
 \^ {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR XOR BINARIO", yytext(), yyline);
   return t;
 }
 
@@ -420,47 +420,47 @@
 }
 
 \>\> {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR DESPLAZAMIENTO A LA DERECHA", yytext(), yyline);
   return t;
 }
 
 \<\< {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR DESPLAZAMIENTO A LA IZQUIERDA", yytext(), yyline);
   return t;
 }
 
 \~ {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR COMPLEMENTO A UNO", yytext(), yyline);
   return t;
 }
 
 \%\= {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR ASIGNACIÓN", yytext(), yyline);
   return t;
 }
 
 \&\= {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR ASIGNACIÓN", yytext(), yyline);
   return t;
 }
 
 \^\= {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR ASIGNACIÓN", yytext(), yyline);
   return t;
 }
 
 \|\= {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR ASIGNACIÓN", yytext(), yyline);
   return t;
 }
 
 \<\<\= {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR ASIGNACIÓN", yytext(), yyline);
   return t;
 }
 
 \>\>\= {
-  Token t = new Token("OPERADOR", yytext(), yyline);
+  Token t = new Token("OPERADOR ASIGNACIÓN", yytext(), yyline);
   return t;
 }
 
@@ -471,7 +471,7 @@
 
 //Error
 . {
-  Token t = new Token("ERROR", yytext(), yyline);
+  Token t = new Token("ERROR: CARACTER NO RECONOCIDO", yytext(), yyline);
   return t;
 }
 
