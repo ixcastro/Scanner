@@ -4,19 +4,20 @@
 
 %type Token
 %line
+%column
 %init{
  /* Código que se ejecutará en el constructor de la clase */
 %init}
   //********************EXPRESIONES REGULARES********************
 
   //********************LITERALES********************
-  DEC_LITERAL = [-]?[1-9][0-9]*
-  OCTAL_LITERAL = [-]?0[0-7]*
+  DEC_LITERAL = ([0]|[-]?[1-9][0-9]*)
+  OCTAL_LITERAL = [-]?0[0-7]+
   HEX_LITERAL = [-]?0[xX][0-9a-fA-F]+
   DOUBLE_LITERAL = [-]?[0-9]+.[0-9]+
 
-  CHAR_LITERAL =  '([^'\\\n]|\\.)'
-  STRING_LITERAL = \"([^'\\\n]|\\.)*\"
+  CHAR_LITERAL =  '(([^'\n\\])|(\\x[0-9]+)|(\\[a-z]))'
+  STRING_LITERAL = \"([^\"\\]|\\[a-zA-Z\"\\])*\"
 
   //********************NEW LINE********************
   NEW_LINE = \n|\r\n
@@ -25,7 +26,7 @@
   BLANK_SPACE = " "
 
   //********************COMMENTS********************
-  BLOCK_COMMENT = [/*].*[NEW_LINE]*[*/] //CORREGIR
+  BLOCK_COMMENT = \/\*(.|\n|\r\n)*\*\/ //CORREGIR
   LINE_COMMENT = [//].*
 
   //********************IDENTIFIER********************
@@ -471,7 +472,7 @@
 
 //Error
 . {
-  Token t = new Token("ERROR: CARACTER NO RECONOCIDO", yytext(), yyline);
+  Token t = new Token("ERROR", yytext(), yyline, yycolumn);
   return t;
 }
 
