@@ -5,11 +5,20 @@ public class Token {
     String lexeme;
     Hashtable<Integer, Integer> occurrencies;
 
+    //To insert a token
     Token(String token, String lexeme, int line) {
         this.token = token;
         this.lexeme = lexeme;
         this.occurrencies = new Hashtable<>();
         this.occurrencies.put(line + 1, 1);
+    }
+
+    //To insert an error
+    Token(String token, String lexeme, int line, int column){
+        this.token = token;
+        this.lexeme = lexeme;
+        this.occurrencies = new Hashtable<>();
+        this.occurrencies.put(line + 1, column + 1);
     }
 
     public String getToken() {
@@ -45,9 +54,9 @@ public class Token {
         for (int key : this.occurrencies.keySet()) {
             int value = this.occurrencies.get(key);
             if (value == 1 ){
-                str += String.valueOf(key) + "  ";
+                str += String.valueOf(key) + " ";
             } else {
-                str += String.valueOf(key) + "(" + String.valueOf(value) + ")  ";
+                str += String.valueOf(key) + "(" + String.valueOf(value) + ") ";
             }
         }
         return str;
